@@ -1,0 +1,21 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "login": "test1",
+      "password": "test1"
+    },
+    {
+      "id": 2,
+      "login": "test2",
+      "password": "test2"
+    }
+  ],
+  "todo": [
+    {
+      "id": 1683310034407,
+      "body": "Почистить зубы",
+      "complete": "undone"
+    }
+  ]
+}

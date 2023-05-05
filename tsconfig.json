@@ -14,6 +14,7 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -21,6 +22,7 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "src",
+    "global.d.ts",
   ]
 }
