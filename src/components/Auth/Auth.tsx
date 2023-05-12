@@ -32,7 +32,7 @@ const Auth = observer(() => {
             if (isLogin) {
                 data = await autorization(login, password)
                 console.log(data);
-                
+
                 if (data?.length > 0) {
                     auth.setUser(data)
                     auth.setIsAuth(true)

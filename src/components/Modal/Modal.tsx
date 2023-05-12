@@ -4,23 +4,23 @@ import styles from './Modal.module.sass'
 import todo from '../../store/todo'
 import { addTodo } from '../../api/ToDoService'
 
-type ModalProps = {
-  visible?: boolean
-  setVisible?: any
+interface ModalProps {
+  visible: boolean
+  setVisible: (visible: boolean) => void
 }
 
 const Modal: React.FC<ModalProps> = ({ visible, setVisible }) => {
-  const [addValue, setAddValue] = useState('')
+  const [additionValue, setAdditionValue] = useState('')
 
-  const addObj = {
+  const additionElement = {
     id: Date.now(),
-    body: addValue,
-    complete: 'undone'
+    body: additionValue,
+    complete: false
   }
 
   const closeModal = async () => {
-    await addTodo(addObj)
-    todo.setTodos([...todo.fetchToDos, addObj])
+    await addTodo(additionElement)
+    todo.setTodos([...todo.fetchToDos, additionElement])
     setVisible(false)
   }
 
@@ -31,7 +31,7 @@ const Modal: React.FC<ModalProps> = ({ visible, setVisible }) => {
           <div className={styles.modalContainer}>
             <div className={styles.modalWrapper}>
               <input
-                onChange={(e) => setAddValue(e.target.value)}
+                onChange={(e) => setAdditionValue(e.target.value)}
                 type="text"
                 placeholder='Введите элемент списка' />
 

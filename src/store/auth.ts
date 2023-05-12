@@ -1,10 +1,11 @@
 import { makeAutoObservable } from "mobx"
+import { IUser } from "../const/const"
 
 class ToDo {
-    _user = [
+    _users = [
         {
             "id": 1,
-            "lgoin": "",
+            "login": "",
             "password": ""
         }
     ]
@@ -15,8 +16,8 @@ class ToDo {
         makeAutoObservable(this)
     }
 
-    setUser(todos: any) {
-        this._user = todos
+    setUser(users: IUser[]) {
+        this._users = users
     }
 
     setIsAuth(bool: boolean) {
@@ -24,9 +25,9 @@ class ToDo {
     }
 
     get user() {
-        return this._user
+        return this._users
     }
-    
+
     get isAuth() {
         return this._isAuth
     }

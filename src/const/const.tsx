@@ -7,8 +7,8 @@ export const baseUsersUrl = 'http://localhost:3000/users'
 
 export const options = [
     { title: 'Все', query: 'all' },
-    { title: 'Выполненные', query: 'done' },
-    { title: 'Невыполненные', query: 'undone' }]
+    { title: 'Выполненные', query: true },
+    { title: 'Невыполненные', query: false }]
 
 export const routes = [
     { path: '/login', element: <Auth /> },
@@ -16,3 +16,14 @@ export const routes = [
     { path: '/', element: < Navigate to='/login' /> },
     { path: '/todo', element: <ToDoList /> }
 ]
+export interface IToDoItem {
+    id: number
+    body: string
+    complete: boolean
+}
+
+export interface IUser {
+    id: number
+    login: string
+    password: string
+}

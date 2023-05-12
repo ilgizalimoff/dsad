@@ -2,20 +2,25 @@
   "users": [
     {
       "id": 1,
-      "login": "test1",
-      "password": "test1"
-    },
-    {
-      "id": 2,
-      "login": "test2",
-      "password": "test2"
+      "login": "test",
+      "password": "test"
     }
   ],
   "todo": [
     {
-      "id": 1683310034407,
-      "body": "Почистить зубы",
-      "complete": "undone"
+      "id": 1683893881802,
+      "body": "Сходить в магазин",
+      "complete": true
+    },
+    {
+      "id": 1683893892115,
+      "body": "Сделать уроки",
+      "complete": false
+    },
+    {
+      "id": 1683893901661,
+      "body": "Помыть посуду",
+      "complete": true
     }
   ]
 }

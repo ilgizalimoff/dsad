@@ -1,11 +1,12 @@
 import { makeAutoObservable } from "mobx"
+import { IToDoItem } from "../const/const"
 
 class ToDo {
     _todos = [
         {
             "id": 1,
             "body": "",
-            "complete": ""
+            "complete": false
         }
     ]
 
@@ -13,7 +14,7 @@ class ToDo {
         makeAutoObservable(this)
     }
 
-    setTodos(todos: any) {
+    setTodos(todos: IToDoItem[]) {
         this._todos = todos
     }
 
