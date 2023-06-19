@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './ToDoItem.module.sass';
 import { observer } from 'mobx-react-lite';
-import todo from '../../store/todo';
 import { switchComplete, removeToDo } from '../../api/ToDoService';
 import { IToDoItem } from '../../const/const';
+import { useAppDispatch } from '../../hook';
+import { removeTodo, toggleComplete } from '../../store/todoSlice';
 
 interface ToDoItemProps {
     todoItem: IToDoItem
@@ -11,32 +12,35 @@ interface ToDoItemProps {
 }
 
 const ToDoItem: React.FC<ToDoItemProps> = observer(({ todoItem, sort }) => {
-    const inputOnChange = async (item: IToDoItem) => {
-        await switchComplete(item)
+    const dispatch = useAppDispatch();
 
-        todo.setTodos(todo.fetchToDos
-            .map(elem => elem.id === item.id ?
-                { ...elem, complete: !elem.complete } : elem)
-            .filter(todo => sort === 'all' ? todo : todo.id !== item.id)
-        )
+    const inputOnChange = (item: IToDoItem) => {
+        dispatch(toggleComplete(item.id))
     }
 
     const removeItem = async (id: number) => {
-        await removeToDo(id)
-        todo.setTodos(todo.fetchToDos.filter(todo => todo.id !== id))
+        dispatch(removeTodo(id))
     }
 
     return (
-        <div className={styles.item}>
+        <div
+            data-testid='todoItem'
+            className={styles.item}>
             <div>
-                <input type='checkbox'
+                <input
+                    data-testid='checkboxBtn'
+                    type='checkbox'
                     checked={todoItem.complete}
                     onChange={() => inputOnChange(todoItem)} />
 
                 <h3>{todoItem.body}</h3>
             </div>
 
-            <span onClick={() => removeItem(todoItem.id)}>Удалить</span>
+            <button
+                data-testid='removeBtn'
+                onClick={() => removeItem(todoItem.id)}>
+                Удалить
+            </button>
         </div>
     );
 })

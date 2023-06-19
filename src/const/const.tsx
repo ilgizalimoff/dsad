@@ -27,3 +27,10 @@ export interface IUser {
     login: string
     password: string
 }
+
+export const validate = (value: number) => {
+    if (value > 0 && value < 100) {
+        return true
+    }
+    return false
+}

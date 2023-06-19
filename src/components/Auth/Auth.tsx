@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import styles from './Auth.module.sass';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import auth from '../../store/auth';
 import { registration, autorization } from '../../api/AuthService';
-import { observer } from 'mobx-react-lite';
 
-const Auth = observer(() => {
+const Auth = () => {
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
 
@@ -21,36 +19,36 @@ const Auth = observer(() => {
     }
 
     const authClick = async () => {
-        try {
-            if (login === '' || password === '') {
-                alert('Поля не должны быть пустыми')
-                return
-            }
-
-            let data
-
-            if (isLogin) {
-                data = await autorization(login, password)
-                console.log(data);
-
-                if (data?.length > 0) {
-                    auth.setUser(data)
-                    auth.setIsAuth(true)
-                    alert('Вы авторизовались!!!')
-                    navigate('/todo')
-                } else {
-                    alert('Таких пользвателей нет')
-                }
-            } else {
-                data = await registration(newUser)
-                auth.setUser(data)
-                auth.setIsAuth(true)
-                alert('Поздравляем с регистрацией!!!')
-                navigate('/todo')
-            }
-        } catch (e: any) {
-            alert(e.response.data.message)
+        if (login === '' || password === '') {
+            alert('Поля не должны быть пустыми')
+            return
         }
+        
+        // try {
+        //     let data
+
+        //     if (isLogin) {
+        //         data = await autorization(login, password)
+        //         console.log(data);
+
+        //         if (data?.length > 0) {
+        //             auth.setUser(data)
+        //             auth.setIsAuth(true)
+        //             alert('Вы авторизовались!!!')
+        //             navigate('/todo')
+        //         } else {
+        //             alert('Таких пользвателей нет')
+        //         }
+        //     } else {
+        //         data = await registration(newUser)
+        //         auth.setUser(data)
+        //         auth.setIsAuth(true)
+        //         alert('Поздравляем с регистрацией!!!')
+        //         navigate('/todo')
+        //     }
+        // } catch (e: any) {
+        //     alert(e.response.data.message)
+        // }
     }
 
     return (
@@ -73,6 +71,7 @@ const Auth = observer(() => {
                     placeholder='Пароль' />
 
                 <button
+                    data-testid='auth'
                     className={styles.loginBtn}
                     onClick={authClick}>
                     {isLogin ? 'Войти' : 'Регистрация'}
@@ -89,6 +88,6 @@ const Auth = observer(() => {
             </div>
         </div>
     );
-})
+}
 
 export default Auth;
